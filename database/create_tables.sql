@@ -1,25 +1,29 @@
 DROP TABLE IF EXISTS PURCHASES;
 DROP TABLE IF EXISTS ACCOUNTS;
+DROP TABLE IF EXISTS ITEM_PICTURE;
+DROP TABLE IF EXISTS CATEGORY_ITEMS;
+DROP TABLE IF EXISTS CATEGORYS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS PROPRIETORS;
 
 /* Differnt companies who sell producs on the store */
 CREATE TABLE PROPRIETORS (
 	proprietor_id int,
-    proprietor_name varchar(100) NOT NULL,
+    proprietor_name varchar(255) NOT NULL,
     PRIMARY KEY (proprietor_id)
 );
 
 /* Items that people can purchase on our store */
 CREATE TABLE ITEMS (
 	item_id int,
-    item_name varchar(100) NOT NULL,
+    item_name varchar(255) NOT NULL,
     item_price double NOT NULL DEFAULT 0,
     item_owner int NOT NULL,
     item_available_stock int DEFAULT 0,
-    item_purchaseable tinyint (1) NOT NULL DEFAULT 1,
+    item_purchaseable tinyint(1) NOT NULL DEFAULT 1,
+    item_description varchar(500),
     PRIMARY KEY (item_id),
-    FOREIGN KEY (item_owner) REFERENCES PROPRIETOR(proprietor_id)
+    FOREIGN KEY (item_owner) REFERENCES PROPRIETORS(proprietor_id)
 );
 
 /* Accounts that purchase items, authed through 0Auth */
@@ -39,4 +43,29 @@ CREATE TABLE PURCHASES (
     PRIMARY KEY (purchase_id),
     FOREIGN KEY (purchase_item) REFERENCES ITEMS(item_id),
     FOREIGN KEY (purchase_account) REFERENCES ACCOUNTS(account_id)
+);
+
+/* Sort items by category name */
+CREATE TABLE CATEGORYS (
+	category_id int,
+    category_name varchar(255) NOT NULL,
+    category_description varchar(500),
+    PRIMARY KEY (category_id)
+);
+
+/* Any item that fits into a category is determined by this */
+CREATE TABLE CATEGORY_ITEMS (
+	category_id int,
+    item_id int,
+    FOREIGN KEY (category_id) REFERENCES CATEGORYS(category_id),
+    FOREIGN KEY (item_id) REFERENCES ITEMS(item_id)
+);
+
+/* items can have pictures for users to view */
+CREATE TABLE ITEM_PICTURE (
+	picture_id int,
+    picture_resource_location varchar(500),
+    picture_item int,
+    PRIMARY KEY (picture_id),
+    FOREIGN KEY (picture_item) REFERENCES ITEMS(item_id)
 );
