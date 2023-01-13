@@ -17,7 +17,7 @@ CREATE TABLE PROPRIETORS (
 CREATE TABLE ITEMS (
 	item_id int,
     item_name varchar(255) NOT NULL,
-    item_price double NOT NULL DEFAULT 0,
+    item_price decimal(7,2) NOT NULL DEFAULT 0,	
     item_owner int NOT NULL,
     item_available_stock int DEFAULT 0,
     item_purchaseable tinyint(1) NOT NULL DEFAULT 1,
@@ -38,8 +38,8 @@ CREATE TABLE ACCOUNTS (
 /* Items that have been purchased by accounts */
 CREATE TABLE PURCHASES (
 	purchase_id int,
-    purchase_item int,
-    purchase_account int,
+    purchase_item int NOT NULL,
+    purchase_account int NOT NULL,
     PRIMARY KEY (purchase_id),
     FOREIGN KEY (purchase_item) REFERENCES ITEMS(item_id),
     FOREIGN KEY (purchase_account) REFERENCES ACCOUNTS(account_id)
@@ -55,8 +55,8 @@ CREATE TABLE CATEGORYS (
 
 /* Any item that fits into a category is determined by this */
 CREATE TABLE CATEGORY_ITEMS (
-	category_id int,
-    item_id int,
+	category_id int NOT NULL,
+    item_id int NOT NULL,
     FOREIGN KEY (category_id) REFERENCES CATEGORYS(category_id),
     FOREIGN KEY (item_id) REFERENCES ITEMS(item_id)
 );
@@ -64,8 +64,8 @@ CREATE TABLE CATEGORY_ITEMS (
 /* items can have pictures for users to view */
 CREATE TABLE ITEM_PICTURE (
 	picture_id int,
-    picture_resource_location varchar(500),
-    picture_item int,
+    picture_resource_location varchar(500) NOT NULL,
+    picture_item int NOT NULL,
     PRIMARY KEY (picture_id),
     FOREIGN KEY (picture_item) REFERENCES ITEMS(item_id)
 );
