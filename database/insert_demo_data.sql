@@ -34,12 +34,12 @@ INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (1, 4);
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (2, 5);
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (3, 5);
 
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (1, 'https://example.com/item1.jpg', 1);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (2, 'https://example.com/item2.jpg', 2);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (3, 'https://example.com/item3.jpg', 3);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (4, 'https://example.com/item4.jpg', 4);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (5, 'https://example.com/item5_pic1.jpg', 5);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (6, 'https://example.com/item5_pic2.jpg', 5);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (7, 'https://example.com/item5_pic3.jpg', 5);
-INSERT INTO ITEM_PICTURE (picture_id, picture_resource_location, picture_item) VALUES (8, 'https://example.com/item5_pic4.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (1, 'https://example.com/item1.jpg', 1);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (2, 'https://example.com/item2.jpg', 2);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (3, 'https://example.com/item3.jpg', 3);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (4, 'https://example.com/item4.jpg', 4);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (5, 'https://example.com/item5_pic1.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (6, 'https://example.com/item5_pic2.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (7, 'https://example.com/item5_pic3.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (8, 'https://example.com/item5_pic4.jpg', 5);
 
