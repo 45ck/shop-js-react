@@ -9,3 +9,7 @@ SET @endingRow = (@selectedPage * @rowsPerPage) - 1;
 SELECT	* 
 FROM	(SELECT ROW_NUMBER() OVER (ORDER BY item_id) AS rowNumber, item_id FROM items) items
 WHERE rowNumber >= @startingRow AND rowNumber <= @endingRow;
+
+/*
+SELECT	* FROM	(SELECT ROW_NUMBER() OVER (ORDER BY item_id) AS rowNumber, item_id FROM items) items WHERE rowNumber >= ${startingRow} AND rowNumber <= ${endingRow};
+*/
