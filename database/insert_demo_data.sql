@@ -23,9 +23,9 @@ INSERT INTO PURCHASES (purchase_id, purchase_item, purchase_account) VALUES (3, 
 INSERT INTO PURCHASES (purchase_id, purchase_item, purchase_account) VALUES (4, 4, 3);
 INSERT INTO PURCHASES (purchase_id, purchase_item, purchase_account) VALUES (5, 5, 2);
 
-INSERT INTO CATEGORYS (category_id, category_name, category_description) VALUES (1, 'Electronics', 'A variety of electronic devices');
-INSERT INTO CATEGORYS (category_id, category_name, category_description) VALUES (2, 'Clothing', 'Fashion items for men and women');
-INSERT INTO CATEGORYS (category_id, category_name, category_description) VALUES (3, 'Home goods', 'Decorations and furniture for the home');
+INSERT INTO CATEGORIES (category_id, category_name, category_description) VALUES (1, 'Electronics', 'A variety of electronic devices');
+INSERT INTO CATEGORIES (category_id, category_name, category_description) VALUES (2, 'Clothing', 'Fashion items for men and women');
+INSERT INTO CATEGORIES (category_id, category_name, category_description) VALUES (3, 'Home goods', 'Decorations and furniture for the home');
 
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (1, 1);
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (2, 2);

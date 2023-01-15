@@ -26,9 +26,20 @@ export default function GetItem() {
 
         console.log(`/api/get_item?id=${query.id}`)
         axios.get(`/api/get_item?id=${query.id}`).then((res: AxiosResponse<any, any>) => {
-            setItemData(res.data[0]);
+            if (res.data.result.length == 0) {
+                
+            } else {
+                setItemData(res.data.result[0]);
+            }
         });
       }, [query.id]);
   
-    return <div>The ID is {itemData?.item_id} </div>
+        return (
+            <div>
+                <h1> {itemData?.item_name} </h1>
+                <h2> {itemData?.item_owner} - ${itemData?.item_price} </h2>
+                <p> {itemData?.item_description} </p>
+                
+            </div>
+        )
   }
