@@ -4,16 +4,17 @@ import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { Atkinson_Hyperlegible } from '@next/font/google'
 import { NumericLiteral } from 'typescript'
-import { Category, Item, Proprietor } from '../../../database/types';
+import { Category, Item, Picture, Proprietor } from '../../../database/types';
 
 export default function GetItem() {
-    const router = useRouter()
 
+    const router = useRouter()
     const { query } = router;
 
     const [itemData, setItemData] = useState<Item>();
     const [proprietorData, setProprietorData] = useState<Proprietor>();
     const [categories, setCategories] = useState<Category[]>([]);
+    const [pictures, setPictures] = useState<Picture[]>([]);
     const [isRealItem, setIsRealItem] = useState<boolean>(true);
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export default function GetItem() {
 
                                 // update categories state with new Category
 
-                                setCategories((prevCategories) => [...prevCategories, category]);
+                                setCategories((previousCategories) => [...previousCategories, category]);
 
                             });
                     }
@@ -75,7 +76,28 @@ export default function GetItem() {
                 }
             });
 
+            // retrieve pictures of items 
 
+            if (itemData?.id != undefined)
+
+                axios.get(`/api/get_item_pictures?id=${itemData.id}`).then((res: AxiosResponse<any, any>) => {
+
+                    // make sure we have at least 1 valid picture
+                    // loop over each picture 
+
+                    if (res.data.result.length != 0) 
+                        res.data.result.forEach((pictureObject: any) => {
+                            
+                            // convert sql picture row into a Picture type
+
+                            let picture = new Picture(pictureObject);
+
+                            // push picture into list of pictures in state
+
+                            setPictures((previousPictures) => [...previousPictures, picture]);
+
+                        });
+                });
     }, [itemData])
 
     return (
@@ -84,14 +106,22 @@ export default function GetItem() {
 
             {isRealItem &&
                 <div>
+
                     <h1> {itemData?.name} </h1>
                     <h2> {itemData?.owner} - ${itemData?.price} - {proprietorData?.name} </h2>
                     <p> {itemData?.description} </p>
+
                     {categories?.map((category: Category, index: number) => {
                         return (<div key={index}>
                             <h3> {category.name} </h3>
                             <p> {category.description} </p>
                         </div>)
+                    })}
+
+                    {pictures.map((picture: Picture, index: number) => {
+                        return (
+                            <img src={picture.resource}/> 
+                        );
                     })}
 
                 </div>

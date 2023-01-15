@@ -15,7 +15,6 @@ export class Item {
         this.availableStock = object.item_available_stock;
         this.purchaseable = object.item_purchaseable;
         this.description = object.item_description;
-        console.log(this);
     }
 }
 
@@ -26,7 +25,6 @@ export class Proprietor {
     constructor(object: any) {
         this.id = object.proprietor_id;
         this.name = object.proprietor_name;
-        console.log(this);
     }
 }
 
@@ -39,8 +37,42 @@ export class Category {
         this.id = object.category_id;
         this.name = object.category_name;
         this.description = object.category_description;
+    }
+}
+
+export class Picture { 
+    id: number;
+    itemId: number;
+    resource: string;
+
+    constructor(object: any) {
+        this.id = object.picture_id;
+        this.resource = object.picture_resource_location;
+        this.itemId = object.picture_item;
 
         console.log(this);
+    }
+}
+
+export class Account { 
+    id: number;
+    email: string;
+
+    constructor(object: any) {
+        this.id = object.account_id;
+        this.email = object.account_id;
+    }
+}
+
+export class Purchase { 
+    id: number;
+    itemId: number;
+    accountId: number;
+
+    constructor(object: any) {
+        this.id = object.purchase_id;
+        this.itemId = object.purchase_item;
+        this.accountId = object.purchase_account;
     }
 }
 

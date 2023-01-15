@@ -35,9 +35,9 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     // some tables are private and only accessible through sessions,
     // deny access to anyone trying to access private data. 
 
-    if (typeOfEntity == (EntityType.Account || EntityType.Purchase)) {
+    if (typeOfEntity == EntityType.Account || typeOfEntity ==  EntityType.Purchase) {
         res.statusCode = 401; 
-        res.end(JSON.stringify({ error: `Unauthorized access to ${typeOfEntity} data.` }));
+        res.end(JSON.stringify({ error: `Unauthorized access to ${typeOfEntity.toLowerCase()} data.` }));
     }
 
     // grab id from search params

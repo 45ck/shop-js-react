@@ -34,12 +34,12 @@ INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (1, 4);
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (2, 5);
 INSERT INTO CATEGORY_ITEMS (category_id, item_id) VALUES (3, 5);
 
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (1, 'https://example.com/item1.jpg', 1);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (2, 'https://example.com/item2.jpg', 2);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (3, 'https://example.com/item3.jpg', 3);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (4, 'https://example.com/item4.jpg', 4);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (5, 'https://example.com/item5_pic1.jpg', 5);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (6, 'https://example.com/item5_pic2.jpg', 5);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (7, 'https://example.com/item5_pic3.jpg', 5);
-INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (8, 'https://example.com/item5_pic4.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (1, 'https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_1000x1000/PPSSMPK25_small_storage_boxes_25_pack.jpg', 1);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (2, 'https://auspost.com.au/shop/static/WFS/AusPost-Shop-Site/-/AusPost-Shop/en_AU/product/90444/1/resized_560x560.png', 2);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq6oPNgO-_dgvB-960CJzDn2pwiUiFFjtY9MJEFuiPzxBUBZiOYcDjRlIBOMuMObAuoSw&usqp=CAU', 3);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (4, 'https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_1000x1000/PPSSMPK25_small_storage_boxes_25_pack.jpg', 4);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (5, 'https://m.media-amazon.com/images/I/41ZquAaCqML.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (6, 'https://ecobox.co.za/wp-content/uploads/2017/10/stock-7-single-1.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (7, 'https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_1000x1000/PPSSMPK25_small_storage_boxes_25_pack.jpg', 5);
+INSERT INTO ITEM_PICTURES (picture_id, picture_resource_location, picture_item) VALUES (8, 'https://auspost.com.au/shop/static/WFS/AusPost-Shop-Site/-/AusPost-Shop/en_AU/product/90444/1/resized_560x560.png', 5);
 
