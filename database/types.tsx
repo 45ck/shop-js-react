@@ -30,6 +30,19 @@ export class Proprietor {
     }
 }
 
+export class Category { 
+    id: number;
+    name: string;
+    description: string;
+
+    constructor(object: any) {
+        this.id = object.category_id;
+        this.name = object.category_name;
+        this.description = object.category_description;
+
+        console.log(this);
+    }
+}
 
 
 
