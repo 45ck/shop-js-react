@@ -30,12 +30,12 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     // grab id from search params
 
     const selectedPage = urlOnlySearch.get("page") ? Number(urlOnlySearch.get("page")) : 1;
-    let rowsPerPage = 3;
+    let rowsPerPage = 12;
 
     // find where to start page and where it ends 
 
     let startingRow = (selectedPage * rowsPerPage) - rowsPerPage;
-    let endingRow = (selectedPage * rowsPerPage) - 1;
+    let endingRow = (selectedPage * rowsPerPage);
 
     // get all item ids between starting row and ending row
 

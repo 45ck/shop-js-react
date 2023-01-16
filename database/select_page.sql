@@ -2,8 +2,8 @@
 SET @rowsPerPage = 4;
 
 /* find where to start page and where it ends */
-SET @startingRow = (@selectedPage * @rowsPerPage) - @rowsPerPage;
-SET @endingRow = (@selectedPage * @rowsPerPage) - 1;
+SET @startingRow = (@selectedPage * @rowsPerPage) - @rowsPerPage - 1;
+SET @endingRow = (@selectedPage * @rowsPerPage);
 
 /* get all rows between starting row and ending row  */
 SELECT	* 

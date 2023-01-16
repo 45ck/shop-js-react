@@ -3,7 +3,6 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import axios, { Axios, AxiosResponse } from 'axios'
 import { Item, OwnerItem, Picture, Proprietor } from '../database/types'
 import RowItem from '../components/RowItem'
-import { createNoSubstitutionTemplateLiteral } from 'typescript'
 
 
 export default function FrontPage() {
@@ -41,7 +40,7 @@ export default function FrontPage() {
 
         // get pictures for items
 
-        axios.get(`/api/get_entity?type=item_pictures&id=${item.id}`).then((resPic: AxiosResponse<any, any>) => {
+        axios.get(`/api/get_item_pictures?id=${item.id}`).then((resPic: AxiosResponse<any, any>) => {
 
             // get first picture of item
 
@@ -62,6 +61,10 @@ export default function FrontPage() {
     })
   }, []);
 
+  useEffect(() => {
+    console.log(itemPictures);
+  }, [itemPictures])
+
   return (
     <>
       <Head>
@@ -72,8 +75,8 @@ export default function FrontPage() {
 
         <div className='grid md:grid-cols-3 grid-cols-1'>
           {
-            proprietors.map((value) => 
-              { return <RowItem ownerItem={value} picture={itemPictures.find(pic => pic.itemId == value.item.id)}/> })
+            proprietors.map((value, index) => 
+              { return <RowItem key={index} ownerItem={value} picture={itemPictures.find(pic => { if (pic.itemId == value.item.id) console.log(pic.itemId, value.item, pic.itemId == value.item.id); return pic.itemId == value.item.id} )}/> })
           }
         </div>
       </main>
