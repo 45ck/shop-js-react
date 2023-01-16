@@ -18,6 +18,13 @@ export class Item {
     }
 }
 
+// key value pair to find the owner of an item
+interface OwnerItem {
+    proprietor: Proprietor,
+    item: Item
+}
+export type { OwnerItem };
+
 export class Proprietor {
     id: number;
     name: string;

@@ -1,23 +1,16 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
-import axios, { AxiosResponse } from 'axios'
-import { Item, Proprietor } from '../database/types'
+import axios, { Axios, AxiosResponse } from 'axios'
+import { Item, OwnerItem, Picture, Proprietor } from '../database/types'
+import RowItem from '../components/RowItem'
+import { createNoSubstitutionTemplateLiteral } from 'typescript'
 
-const inter = Inter({ subsets: ['latin'] })
-
-// key value pair to find the owner of an item
-
-interface OwnerItem {
-  proprietor: Proprietor,
-  item: Item
-}
 
 export default function FrontPage() {
 
   const [displayItems, setDisplayItems] = useState<Item[]>([]);
   const [proprietors, setProprietors] = useState<OwnerItem[]>([])
+  const [itemPictures, setItemPictures] = useState<Picture[]>([]);
   const hasFetchedPages: MutableRefObject<boolean> = useRef(false);
 
   useEffect(() => {
@@ -46,6 +39,20 @@ export default function FrontPage() {
 
         });
 
+        // get pictures for items
+
+        axios.get(`/api/get_entity?type=item_pictures&id=${item.id}`).then((resPic: AxiosResponse<any, any>) => {
+
+            // get first picture of item
+
+            let picture: Picture = new Picture(resPic.data.result[0]);
+
+            // add it to list of pictures
+
+            setItemPictures(pics => [...pics, picture]);
+
+        });
+
         // don't add the item twice 
 
         if (!displayItems.includes(item))
@@ -63,12 +70,10 @@ export default function FrontPage() {
       <main>
         <p> Hello </p>
 
-        <div>
+        <div className='grid md:grid-cols-3 grid-cols-1'>
           {
-            displayItems.map((item: Item, index: number) => {
-              return <div key={index}> <h2> {item.name} </h2> <h3> ${item.price} - {proprietors.find(x => x.item.owner == item.owner )?.proprietor.name} 
-              </h3> <p> {item.description} </p> </div>
-            })
+            proprietors.map((value) => 
+              { return <RowItem ownerItem={value} picture={itemPictures.find(pic => pic.itemId == value.item.id)}/> })
           }
         </div>
       </main>
