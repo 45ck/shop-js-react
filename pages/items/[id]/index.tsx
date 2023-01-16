@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { Atkinson_Hyperlegible } from '@next/font/google'
@@ -36,7 +36,16 @@ export default function GetItem() {
     // once the main items are loaded
     // start retrieving associated entities 
 
+    const foreignKeysLoaded: MutableRefObject<boolean> = useRef(false);
+
     useEffect(() => {
+
+        // only run once.
+
+        if (foreignKeysLoaded.current == false && itemData != undefined)
+            foreignKeysLoaded.current = true;
+        else 
+            return;
 
         // retrieve data about the owner of the item
 
@@ -120,7 +129,7 @@ export default function GetItem() {
 
                     {pictures.map((picture: Picture, index: number) => {
                         return (
-                            <img src={picture.resource}/> 
+                            <img key={index} src={picture.resource}/> 
                         );
                     })}
 
