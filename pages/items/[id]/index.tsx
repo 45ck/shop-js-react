@@ -36,14 +36,14 @@ export default function GetItem() {
     // once the main items are loaded
     // start retrieving associated entities 
 
-    const foreignKeysLoaded: MutableRefObject<boolean> = useRef(false);
+    const hasLoadedAssociatedEntities: MutableRefObject<boolean> = useRef(false);
 
     useEffect(() => {
 
         // only run once.
 
-        if (foreignKeysLoaded.current == false && itemData != undefined)
-            foreignKeysLoaded.current = true;
+        if (hasLoadedAssociatedEntities.current == false && itemData != undefined)
+            hasLoadedAssociatedEntities.current = true;
         else 
             return;
 
@@ -75,7 +75,7 @@ export default function GetItem() {
 
                                 let category = new Category(categoryRes.data.result[0]);
 
-                                // update categories state with new Category
+                                // update categories with newly created Category
 
                                 setCategories((previousCategories) => [...previousCategories, category]);
 
