@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { MutableRefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 import { Atkinson_Hyperlegible } from '@next/font/google'
 import { NumericLiteral } from 'typescript'
 import { Category, Item, Picture, Proprietor } from '../../../database/types';
+import { UserDataContext } from '../../_app'
 
 export default function GetItem() {
 
@@ -16,6 +17,8 @@ export default function GetItem() {
     const [categories, setCategories] = useState<Category[]>([]);
     const [pictures, setPictures] = useState<Picture[]>([]);
     const [isRealItem, setIsRealItem] = useState<boolean>(true);
+
+    const userData = useContext(UserDataContext);
 
     useEffect(() => {
         if (!query.id)
@@ -132,6 +135,8 @@ export default function GetItem() {
                             <img key={index} src={picture.resource}/> 
                         );
                     })}
+
+                    <button onClick={() => { if(itemData != undefined) userData?.set({cart: [...userData.get.cart, itemData]}) }}> Add to cart </button>
 
                 </div>
             }
