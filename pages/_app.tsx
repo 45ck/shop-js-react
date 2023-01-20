@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { createContext, SetStateAction, useState } from 'react';
 import { Item } from '../database/types';
+import Navigation from '../components/Navigation';
 
 interface UserData {
   cart: Item[];
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <UserDataContext.Provider value={{get: userData, set: setUserData}}> 
+      <Navigation/>
       <Component {...pageProps} /> 
     </UserDataContext.Provider>
   )
