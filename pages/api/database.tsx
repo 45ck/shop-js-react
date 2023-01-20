@@ -1,4 +1,4 @@
-import { createConnection, createPool } from 'mysql2';
+import { createConnection } from 'mysql2';
 import Query from 'mysql2/typings/mysql/lib/protocol/sequences/Query';
 
 const connection = createConnection({

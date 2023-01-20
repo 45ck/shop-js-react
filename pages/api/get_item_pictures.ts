@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { createConnection, RowDataPacket } from 'mysql2';
+import { RowDataPacket } from 'mysql2';
 import Query from 'mysql2/typings/mysql/lib/protocol/sequences/Query';
 import { URLSearchParams } from 'url';
 import { connectionStatus, connection } from './database'

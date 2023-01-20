@@ -1,11 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import React, { ComponentProps, MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
-import axios, { AxiosResponse } from 'axios'
+import React, { useContext } from 'react'
 import { Item, OwnerItem, Picture, Proprietor } from '../database/types'
 import Router from 'next/router'
 import { UserDataContext } from '../pages/_app'
-import { Niconne } from '@next/font/google'
 
 export default function RowItem(prop: {ownerItem: OwnerItem, picture?: Picture, className?: string}) {
 
