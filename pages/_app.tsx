@@ -1,16 +1,27 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { createContext, useState } from 'react';
+import { createContext, SetStateAction, useState } from 'react';
 import { Item } from '../database/types';
 
 interface UserData {
   cart: Item[];
 }
 
-export const UserDataContext = createContext<UserData | null>(null);
+interface GlobalState {
+  get: UserData;
+  set: (value: UserData) => void
+}
 
-const [userData, setUserData] = useState<UserData>({cart: []});
+export const UserDataContext = createContext<GlobalState | null>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <UserDataContext.Provider value={userData}> <Component {...pageProps} /> </UserDataContext.Provider>
+
+  const [userData, setUserData] = useState<UserData>({cart: []});
+
+
+  return (
+    <UserDataContext.Provider value={{get: userData, set: setUserData}}> 
+      <Component {...pageProps} /> 
+    </UserDataContext.Provider>
+  )
 }
