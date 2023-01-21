@@ -61,10 +61,6 @@ export default function FrontPage() {
     })
   }, []);
 
-  useEffect(() => {
-    console.log(itemPictures);
-  }, [itemPictures])
-
   return (
     <>
       <Head>
@@ -76,7 +72,7 @@ export default function FrontPage() {
         <div className='grid md:grid-cols-3 grid-cols-1'>
           {
             proprietors.map((value, index) => 
-              { return <RowItem key={index} ownerItem={value} picture={itemPictures.find(pic => { if (pic.itemId == value.item.id) console.log(pic.itemId, value.item, pic.itemId == value.item.id); return pic.itemId == value.item.id} )}/> })
+              { return <RowItem key={index} ownerItem={value} picture={itemPictures.find(pic => { if (pic.itemId == value.item.id)  return pic.itemId == value.item.id} )}/> })
           }
         </div>
       </main>

@@ -55,8 +55,6 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
 
     let sqlEntityId = EntityId[Object.values(EntityType).indexOf(typeOfEntity)];
 
-    console.log(sqlEntityId, typeOfEntity, `SELECT * FROM ${typeOfEntity.toUpperCase} WHERE ${sqlEntityId}=${id}`);
-
     // query database to select the item we want
 
     let sqlQuery = urlOnlySearch.has("id") ? `SELECT * FROM ${typeOfEntity.toUpperCase()} WHERE ${sqlEntityId}=${id}` : `SELECT * FROM ${typeOfEntity.toUpperCase()}`;

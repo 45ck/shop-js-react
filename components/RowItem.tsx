@@ -15,7 +15,7 @@ export default function RowItem(prop: {ownerItem: OwnerItem, picture?: Picture, 
               </h3> <p> {prop.ownerItem.item.description} </p> 
               {prop.picture != undefined ? <img src={prop.picture.resource} className=' aspect-square w-60 h-60' /> : null}
         </div>
-        <button onClick={() => { userData?.set({cart: [...userData.get.cart, prop.ownerItem.item]}); console.log("HELLOWORLD", userData?.get) } } className=" z-10 relative"> Add to cart </button>
+        <button onClick={() => { userData?.set({cart: [...userData.get.cart, prop.ownerItem.item]}); } } className=" z-10 relative"> Add to cart </button>
         </div>
     </>
   )

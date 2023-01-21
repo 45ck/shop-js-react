@@ -56,8 +56,6 @@ export class Picture {
         this.id = object.picture_id;
         this.resource = object.picture_resource_location;
         this.itemId = object.picture_item;
-
-        console.log(this);
     }
 }
 

@@ -66,15 +66,11 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
                             res.end(JSON.stringify({ error: 'Error querying the database' }));
                         }
 
-                        console.log(itemsResult[0])
-
                         sqlItems = [...sqlItems, itemsResult[0]];
 
                         // return item if we have all sql items in array
 
                         if (sqlItems.length >= result.length) {
-
-                            console.log(sqlItems, "items")
 
                             res.end(JSON.stringify({ sqlItems }));
                         }
