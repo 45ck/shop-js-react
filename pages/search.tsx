@@ -73,7 +73,7 @@ export default function Search() {
         <title>Shop</title>
       </Head>
       <main>
-        <p> Hello </p>
+        <h1 className=' text-2xl'> {displayItems.length} results for &apos;{query["q"]}&apos;  </h1>
 
         <div className='grid md:grid-cols-3 grid-cols-1'>
           {
