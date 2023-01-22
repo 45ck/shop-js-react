@@ -27,7 +27,7 @@ export default function Search() {
 
     // retrieve items from first page
 
-    axios.get(`/api/search?q=${query["q"]}`).then((res: AxiosResponse<any, any>) => {
+    axios.get(`/api/search?query=${query["q"]}`).then((res: AxiosResponse<any, any>) => {
       res.data.sqlItems.forEach((sqlItem: any) => {
 
         let item: Item = new Item(sqlItem);

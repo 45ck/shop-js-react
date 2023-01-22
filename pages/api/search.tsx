@@ -34,9 +34,16 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     let startingRow = (selectedPage * rowsPerPage) - rowsPerPage;
     let endingRow = (selectedPage * rowsPerPage);
 
-    // get all item ids between starting row and ending row
+    let query =  urlOnlySearch.get("query")
 
-    connection.query(`SELECT * FROM	(SELECT ROW_NUMBER() OVER (ORDER BY item_id) AS rowNumber, item_id FROM items) items WHERE rowNumber >= ${startingRow} AND rowNumber <= ${endingRow};`,
+    console.log(query)
+
+    // get all item ids between starting row and ending row
+    // and find all items that match query in columns name and description
+
+    let sqlQuery = `SELECT * FROM(SELECT *,ROW_NUMBER() OVER (ORDER BY item_id) AS rowNumber FROM items) items WHERE rowNumber >= ${startingRow} AND rowNumber <= ${endingRow} AND (item_name LIKE '%${query}%' OR item_description LIKE '%${query}%');`;
+
+    connection.query(sqlQuery,
         (queryError: Query.QueryError | null, result: RowDataPacket) => {
 
             // error if query didn't work.
