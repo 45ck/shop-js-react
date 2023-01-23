@@ -27,7 +27,7 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     // grab id from search params
 
     const selectedPage = urlOnlySearch.get("page") ? Number(urlOnlySearch.get("page")) : 1;
-    let rowsPerPage = 12;
+    let rowsPerPage = 6;
 
     // find where to start page and where it ends 
 
