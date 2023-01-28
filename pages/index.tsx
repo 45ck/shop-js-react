@@ -42,13 +42,13 @@ export default function FrontPage() {
 
         axios.get(`/api/get_item_pictures?id=${item.id}`).then((resPic: AxiosResponse<any, any>) => {
 
-            // get first picture of item
+          // get first picture of item
 
-            let picture: Picture = new Picture(resPic.data.result[0]);
+          let picture: Picture = new Picture(resPic.data.result[0]);
 
-            // add it to list of pictures
+          // add it to list of pictures
 
-            setItemPictures(pics => [...pics, picture]);
+          setItemPictures(pics => [...pics, picture]);
 
         });
 
@@ -56,7 +56,7 @@ export default function FrontPage() {
 
         if (!displayItems.includes(item))
           setDisplayItems(value => [item, ...value]);
-          
+
       });
     })
   }, []);
@@ -71,8 +71,7 @@ export default function FrontPage() {
 
         <div className='grid md:grid-cols-3 grid-cols-1'>
           {
-            proprietors.map((value, index) => 
-              { return <RowItem key={index} ownerItem={value} picture={itemPictures.find(pic => { if (pic.itemId == value.item.id)  return pic.itemId == value.item.id} )}/> })
+            proprietors.map((value, index) => { return <RowItem key={index} ownerItem={value} picture={itemPictures.find(pic => { if (pic.itemId == value.item.id) return pic.itemId == value.item.id })} /> })
           }
         </div>
       </main>

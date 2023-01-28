@@ -14,5 +14,5 @@ var connectionStatus = true;
 connection.connect((connectionError: Query.QueryError | null) => {
     if (connectionError) connectionStatus = false;
 });
-  
+
 export { connectionStatus, connection };

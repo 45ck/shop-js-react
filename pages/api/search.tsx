@@ -34,7 +34,7 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     let startingRow = (selectedPage * rowsPerPage) - rowsPerPage;
     let endingRow = (selectedPage * rowsPerPage);
 
-    let query =  urlOnlySearch.get("query")
+    let query = urlOnlySearch.get("query")
 
     console.log(query)
 

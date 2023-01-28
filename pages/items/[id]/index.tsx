@@ -47,7 +47,7 @@ export default function GetItem() {
 
         if (hasLoadedAssociatedEntities.current == false && itemData != undefined)
             hasLoadedAssociatedEntities.current = true;
-        else 
+        else
             return;
 
         // retrieve data about the owner of the item
@@ -88,28 +88,28 @@ export default function GetItem() {
                 }
             });
 
-            // retrieve pictures of items 
+        // retrieve pictures of items 
 
-            if (itemData?.id != undefined)
+        if (itemData?.id != undefined)
 
-                axios.get(`/api/get_item_pictures?id=${itemData.id}`).then((res: AxiosResponse<any, any>) => {
+            axios.get(`/api/get_item_pictures?id=${itemData.id}`).then((res: AxiosResponse<any, any>) => {
 
-                    // make sure we have at least 1 valid picture
-                    // loop over each picture 
+                // make sure we have at least 1 valid picture
+                // loop over each picture 
 
-                    if (res.data.result.length != 0) 
-                        res.data.result.forEach((pictureObject: any) => {
-                            
-                            // convert sql picture row into a Picture type
+                if (res.data.result.length != 0)
+                    res.data.result.forEach((pictureObject: any) => {
 
-                            let picture = new Picture(pictureObject);
+                        // convert sql picture row into a Picture type
 
-                            // push picture into list of pictures in state
+                        let picture = new Picture(pictureObject);
 
-                            setPictures((previousPictures) => [...previousPictures, picture]);
+                        // push picture into list of pictures in state
 
-                        });
-                });
+                        setPictures((previousPictures) => [...previousPictures, picture]);
+
+                    });
+            });
     }, [itemData])
 
     return (
@@ -132,18 +132,18 @@ export default function GetItem() {
 
                     {pictures.map((picture: Picture, index: number) => {
                         return (
-                            <img key={index} src={picture.resource}/> 
+                            <img key={index} src={picture.resource} />
                         );
                     })}
 
-<div>
-    <label> Add to cart </label>
-                    <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> { userData?.get.cart.filter((item) => {return item.id == itemData?.id}).length } </div>
-                    <div className=" border-solid border-2 w-fit h-fit p-2 inline"> <button onClick={() => { if(itemData != undefined) userData?.set({cart: [...userData.get.cart, itemData]}) }}> + </button>
+                    <div>
+                        <label> Add to cart </label>
+                        <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
+                        <div className=" border-solid border-2 w-fit h-fit p-2 inline"> <button onClick={() => { if (itemData != undefined) userData?.set({ cart: [...userData.get.cart, itemData] }) }}> + </button>
+                        </div>
                     </div>
- </div>
 
-                    
+
                 </div>
             }
         </>

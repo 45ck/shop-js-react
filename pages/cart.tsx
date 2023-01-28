@@ -28,10 +28,10 @@ export default function ViewCart() {
   // when the cart changes re-calculate price
 
   useEffect(() => {
-    
+
     let accumulativePrice: number = 0;
     let count = 0;
-    let newItemsList : MultipleItem[] = [];
+    let newItemsList: MultipleItem[] = [];
 
     userData?.get.cart.forEach((item: Item) => {
 
@@ -40,17 +40,17 @@ export default function ViewCart() {
 
       // if item is already listed than compress it into a multiple 
 
-      if (newItemsList.find(value => { return value.item.id == item.id}) != undefined) {
+      if (newItemsList.find(value => { return value.item.id == item.id }) != undefined) {
 
-        let indexToEdit = newItemsList.findIndex(value => {return value.item.id == item.id;});
+        let indexToEdit = newItemsList.findIndex(value => { return value.item.id == item.id; });
 
         newItemsList[indexToEdit].multiplier = newItemsList[indexToEdit].multiplier + 1;
 
-      }  else {
+      } else {
 
         // if item is not listed than add it.
 
-        newItemsList.push({item: item, multiplier: 1});
+        newItemsList.push({ item: item, multiplier: 1 });
 
       }
     });
@@ -67,7 +67,7 @@ export default function ViewCart() {
         <title>View Cart</title>
       </Head>
       <main>
-        {itemsListCompressed.length != 0 ? ( <>
+        {itemsListCompressed.length != 0 ? (<>
           <h1> You have {itemsListLength} items in your cart. </h1>
 
           <div className=' flex flex-col'>
@@ -77,7 +77,7 @@ export default function ViewCart() {
           </div>
 
           <p> Total Price: $ {totalPrice} </p>
-        </> ) : ( <> 
+        </>) : (<>
           <h1> You have no items in your cart </h1>
           <Link href="/"> Go Back </Link>
         </>)}

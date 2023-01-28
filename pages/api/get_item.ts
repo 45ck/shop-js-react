@@ -6,33 +6,33 @@ import { connectionStatus, connection } from './database'
 
 export default async function (req: IncomingMessage, res: ServerResponse) {
 
-     // check if we are connected
+    // check if we are connected
 
-     if (!connectionStatus) {
+    if (!connectionStatus) {
         res.statusCode = 500;
         res.end(JSON.stringify({ error: 'Error connecting to the database' }));
     }
 
     // get search parameters from url
 
-    const urlOnlySearch = new URLSearchParams((req.url as string).split('?')[1])  
+    const urlOnlySearch = new URLSearchParams((req.url as string).split('?')[1])
 
     // grab id from search params
 
     const id = urlOnlySearch.get("id");
 
     connection.query(urlOnlySearch.has("id") ? `SELECT * FROM ITEMS WHERE item_id=${id}` : `SELECT * FROM ITEMS`,
-    (queryError: Query.QueryError | null, result: RowDataPacket) => {
+        (queryError: Query.QueryError | null, result: RowDataPacket) => {
 
-        // error if query didn't work.
+            // error if query didn't work.
 
-        if (queryError) {
-            res.statusCode = 500;
-            res.end(JSON.stringify({ error: 'Error querying the database' }));
-        }
+            if (queryError) {
+                res.statusCode = 500;
+                res.end(JSON.stringify({ error: 'Error querying the database' }));
+            }
 
-        // return item if successful
+            // return item if successful
 
-        res.end(JSON.stringify({ result }));
-    });
+            res.end(JSON.stringify({ result }));
+        });
 }

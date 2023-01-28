@@ -9,13 +9,13 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     // check if we are connected
 
     if (!connectionStatus) {
-        res.statusCode = 500; 
+        res.statusCode = 500;
         res.end(JSON.stringify({ error: `Unknown database error.` }));
     }
 
     // get search parameters from url
 
-    const urlOnlySearch = new URLSearchParams((req.url as string).split('?')[1]);  
+    const urlOnlySearch = new URLSearchParams((req.url as string).split('?')[1]);
 
     // grab type of entity from search params
 
@@ -28,13 +28,13 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
         ItemPicture = "ITEM_PICTURES",
     }
 
-    const typeOfEntity : EntityType = urlOnlySearch.get("type")?.toUpperCase() as EntityType;
+    const typeOfEntity: EntityType = urlOnlySearch.get("type")?.toUpperCase() as EntityType;
 
     // some tables are private and only accessible through sessions,
     // deny access to anyone trying to access private data. 
 
-    if (typeOfEntity == EntityType.Account || typeOfEntity ==  EntityType.Purchase) {
-        res.statusCode = 401; 
+    if (typeOfEntity == EntityType.Account || typeOfEntity == EntityType.Purchase) {
+        res.statusCode = 401;
         res.end(JSON.stringify({ error: `Unauthorized access to ${typeOfEntity.toLowerCase()} data.` }));
     }
 
@@ -60,19 +60,19 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
     let sqlQuery = urlOnlySearch.has("id") ? `SELECT * FROM ${typeOfEntity.toUpperCase()} WHERE ${sqlEntityId}=${id}` : `SELECT * FROM ${typeOfEntity.toUpperCase()}`;
 
     connection.query(sqlQuery,
-    (queryError: Query.QueryError | null, result: RowDataPacket) => {
+        (queryError: Query.QueryError | null, result: RowDataPacket) => {
 
-        // error if query didn't work.
+            // error if query didn't work.
 
-        if (queryError) {
-            res.statusCode = 500;
-            res.end(JSON.stringify({ error: 'Error querying the database' }));
-        }
+            if (queryError) {
+                res.statusCode = 500;
+                res.end(JSON.stringify({ error: 'Error querying the database' }));
+            }
 
-        // return item if successful
+            // return item if successful
 
-        res.end(JSON.stringify({ result }));
+            res.end(JSON.stringify({ result }));
 
-    });
+        });
 
 }
