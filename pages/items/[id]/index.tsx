@@ -136,8 +136,14 @@ export default function GetItem() {
                         );
                     })}
 
-                    <button onClick={() => { if(itemData != undefined) userData?.set({cart: [...userData.get.cart, itemData]}) }}> Add to cart </button>
+<div>
+    <label> Add to cart </label>
+                    <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> { userData?.get.cart.filter((item) => {return item.id == itemData?.id}).length } </div>
+                    <div className=" border-solid border-2 w-fit h-fit p-2 inline"> <button onClick={() => { if(itemData != undefined) userData?.set({cart: [...userData.get.cart, itemData]}) }}> + </button>
+                    </div>
+ </div>
 
+                    
                 </div>
             }
         </>
