@@ -1,11 +1,12 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { createContext, SetStateAction, useState } from 'react';
-import { Item } from '../database/types';
+import { Account, Item } from '../database/types';
 import Navigation from '../components/Navigation';
 
 interface UserData {
   cart: Item[];
+  account?: Account;
 }
 
 interface GlobalState {

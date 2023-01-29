@@ -15,7 +15,7 @@ export default function Navigation() {
             <label> Search </label>
             <input type={"text"} name="q" className="lg:w-52 " />
           </form>
-          <Link href="/account"> Account </Link>
+          <Link href="/account"> {userData?.get.account ? userData.get.account.email : "Sign in" } </Link>
           <Link href="/cart"> Cart ({userData?.get.cart.length}) </Link>
         </div>
       </nav>
