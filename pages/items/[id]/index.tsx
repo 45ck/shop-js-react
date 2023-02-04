@@ -117,7 +117,17 @@ export default function GetItem() {
             {!isRealItem && <div> <h1> This page does not exist. </h1></div>}
 
             {isRealItem &&
-                <div>
+
+            <div className='grid w-screen h-full grid-cols-2 justify-center gap-6'>
+                <div className='flex justify-center flex-col'> 
+                     
+                    {pictures.map((picture: Picture, index: number) => {
+                        return (
+                            <img key={index} src={picture.resource} />
+                        );
+                    })}
+                </div>
+                <div className='flex justify-center flex-col'>
 
                     <h1> {itemData?.name} </h1>
                     <h2> {itemData?.owner} - ${itemData?.price} - {proprietorData?.name} </h2>
@@ -130,12 +140,6 @@ export default function GetItem() {
                         </div>)
                     })}
 
-                    {pictures.map((picture: Picture, index: number) => {
-                        return (
-                            <img key={index} src={picture.resource} />
-                        );
-                    })}
-
                     <div>
                         <label> Add to cart </label>
                         <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
@@ -143,6 +147,8 @@ export default function GetItem() {
                         </div>
                     </div>
 
+
+                </div>
 
                 </div>
             }
