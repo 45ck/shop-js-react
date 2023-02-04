@@ -118,8 +118,8 @@ export default function GetItem() {
 
             {isRealItem &&
 
-            <div className='grid w-screen h-full grid-cols-2 justify-center gap-6'>
-                <div className='flex justify-center flex-col'> 
+            <div className='grid grid-cols-2 h-screen justify-center gap-6'>
+                <div className=' flex items-center justify-end w-full'> 
                      
                     {pictures.map((picture: Picture, index: number) => {
                         return (
@@ -127,20 +127,22 @@ export default function GetItem() {
                         );
                     })}
                 </div>
-                <div className='flex justify-center flex-col'>
+                <div className='flex flex-col justify-center h-full w-fit p-5'>
 
                     <h1> {itemData?.name} </h1>
-                    <h2> {itemData?.owner} - ${itemData?.price} - {proprietorData?.name} </h2>
-                    <p> {itemData?.description} </p>
+                    <span>  {proprietorData?.name} </span>
 
+                    <h2 className='mt-5'>  ${itemData?.price}  </h2>
+                    <p className='mt-5'> {itemData?.description} </p>
+
+                    <h3 className='mt-5'> Categories </h3>
                     {categories?.map((category: Category, index: number) => {
                         return (<div key={index}>
-                            <h3> {category.name} </h3>
-                            <p> {category.description} </p>
+                            <p className=' bg-slate-600 rounded-lg p-2 w-fit text-slate-100' title={category.description} >{category.name} </p>
                         </div>)
                     })}
 
-                    <div>
+                    <div className='py-3 mt-5'>
                         <label> Add to cart </label>
                         <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
                         <div className=" border-solid border-2 w-fit h-fit p-2 inline"> <button onClick={() => { if (itemData != undefined) userData?.set({ cart: [...userData.get.cart, itemData] }) }}> + </button>
