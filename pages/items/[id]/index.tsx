@@ -136,17 +136,18 @@ export default function GetItem() {
                     <p className='mt-5'> {itemData?.description} </p>
 
                     <h3 className='mt-5'> Categories </h3>
+                    <div className='flex'>
                     {categories?.map((category: Category, index: number) => {
                         return (<div key={index}>
-                            <p className=' bg-slate-600 rounded-lg p-2 w-fit text-slate-100' title={category.description} >{category.name} </p>
+                            <p className=' bg-slate-200 rounded-lg p-2 w-fit text-slate-800 ml-1' title={category.description} >{category.name} </p>
                         </div>)
                     })}
+                    </div>
 
-                    <div className='py-3 mt-5'>
+                    <div className='py-3 mt-5 bg-slate-400 text-slate-800 px-2 w-fit rounded-lg'>
                         <label> Add to cart </label>
-                        <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline"> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
-                        <div className=" border-solid border-2 w-fit h-fit p-2 inline"> <button onClick={() => { if (itemData != undefined) userData?.set({ cart: [...userData.get.cart, itemData] }) }}> + </button>
-                        </div>
+                        <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline rounded-l-lg border-slate-600 bg-slate-500/25 "> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
+                         <button className="border-solid border-2 w-fit h-fit p-2 m-0 inline rounded-sm rounded-r-lg border-slate-600 bg-slate-500/25 leading-[initial] hover:bg-slate-500 transition-colors" onClick={() => { if (itemData != undefined) userData?.set({ cart: [...userData.get.cart, itemData] }) }}> + </button>
                     </div>
 
 
