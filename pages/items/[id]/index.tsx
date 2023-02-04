@@ -6,6 +6,7 @@ import { Atkinson_Hyperlegible } from '@next/font/google'
 import { NumericLiteral } from 'typescript'
 import { Category, Item, Picture, Proprietor } from '../../../database/types';
 import { UserDataContext } from '../../_app'
+import AddToCartButton from '../../../components/AddToCartButton'
 
 export default function GetItem() {
 
@@ -144,10 +145,9 @@ export default function GetItem() {
                     })}
                     </div>
 
-                    <div className='py-3 mt-5 bg-slate-400 text-slate-800 px-2 w-fit rounded-lg'>
-                        <label> Add to cart </label>
-                        <div className=" border-solid border-y-2 border-l-2 w-fit h-fit p-2 inline rounded-l-lg border-slate-600 bg-slate-500/25 "> {userData?.get.cart.filter((item) => { return item.id == itemData?.id }).length} </div>
-                         <button className="border-solid border-2 w-fit h-fit p-2 m-0 inline rounded-sm rounded-r-lg border-slate-600 bg-slate-500/25 leading-[initial] hover:bg-slate-500 transition-colors" onClick={() => { if (itemData != undefined) userData?.set({ cart: [...userData.get.cart, itemData] }) }}> + </button>
+                    <div className='bg-slate-400 py-3 mt-5  text-slate-800 px-2 w-fit rounded-lg flex items-center' >
+                    <label className='mr-2'> Add to cart </label>
+                    <AddToCartButton item={itemData as Item}/>
                     </div>
 
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Item, OwnerItem, Picture, Proprietor } from '../database/types'
 import Router from 'next/router'
 import { UserDataContext } from '../pages/_app'
+import AddToCartButton from './AddToCartButton';
 
 export default function RowItem(prop: { ownerItem: OwnerItem, picture?: Picture, className?: string }) {
 
@@ -15,7 +16,7 @@ export default function RowItem(prop: { ownerItem: OwnerItem, picture?: Picture,
           </h3> <p> {prop.ownerItem.item.description} </p>
           {prop.picture != undefined ? <img src={prop.picture.resource} className=' aspect-square w-60 h-60' /> : null}
         </div>
-        <button onClick={() => { userData?.set({ cart: [...userData.get.cart, prop.ownerItem.item] }); }} className=" z-10 relative"> Add to cart </button>
+        <AddToCartButton item={prop.ownerItem.item}/>
       </div>
     </>
   )
