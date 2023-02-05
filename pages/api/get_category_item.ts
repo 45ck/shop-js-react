@@ -17,7 +17,7 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
 
     const urlOnlySearch = new URLSearchParams((req.url as string).split('?')[1])
 
-    // grab id from search params
+    // grab id from search params e
 
     const id = urlOnlySearch.get("id");
 

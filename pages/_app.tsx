@@ -21,9 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const [userData, setUserData] = useState<UserData>({cart: []});
 
-
   return (
-    <>
     <UserDataContext.Provider value={{get: userData, set: setUserData}}> 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -33,6 +31,5 @@ export default function App({ Component, pageProps }: AppProps) {
       <Navigation/>
       <Component {...pageProps} /> 
     </UserDataContext.Provider>
-    </>
   )
 }

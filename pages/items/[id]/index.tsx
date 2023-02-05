@@ -1,12 +1,10 @@
-import Head from 'next/head'
-import { MutableRefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
-import { Atkinson_Hyperlegible } from '@next/font/google'
-import { NumericLiteral } from 'typescript'
 import { Category, Item, Picture, Proprietor } from '../../../database/types';
 import { UserDataContext } from '../../_app'
 import AddToCartButton from '../../../components/AddToCartButton'
+import CategoryTag from '../../../components/CategoryTag';
 
 export default function GetItem() {
 
@@ -140,7 +138,7 @@ export default function GetItem() {
                     <div className='flex'>
                     {categories?.map((category: Category, index: number) => {
                         return (<div key={index}>
-                            <p className=' bg-slate-200 rounded-lg p-2 w-fit text-slate-800 ml-1' title={category.description} >{category.name} </p>
+                            <CategoryTag category={category}/>
                         </div>)
                     })}
                     </div>
