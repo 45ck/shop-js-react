@@ -55,9 +55,7 @@ export default function Navigation() {
         </div>
         <div className='w-100 flex items-start py-3 pr-8 bg-slate-100'>
           { categories.map((category: Category, index) => 
-            <Link href={`/categories/${category.id}` }>
-              <CategoryTag key={index} category={category}/> 
-            </Link>
+            <CategoryTag key={index} category={category}/> 
           )}
         </div>
       </nav>
