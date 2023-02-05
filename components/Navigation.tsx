@@ -53,9 +53,11 @@ export default function Navigation() {
             <Link href="/cart"> <FontAwesomeIcon icon="cart-shopping" size="2x" color='var(--zinc-black)' /> <span className=' bg-red-500 text-red-100 absolute py-0 px-1 -translate-x-1/2 font-bold text-sm rounded-2xl'>{userData?.get.cart.length}</span> </Link>
           </div>
         </div>
-        <div className='w-100 flex justify-between items-start py-2 pl-2 pr-8'>
+        <div className='w-100 flex items-start py-3 pr-8 bg-slate-100'>
           { categories.map((category: Category, index) => 
-            <CategoryTag key={index} category={category}/> 
+            <Link href={`/categories/${category.id}` }>
+              <CategoryTag key={index} category={category}/> 
+            </Link>
           )}
         </div>
       </nav>
