@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { UserDataContext } from '../pages/_app'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { Category } from '../database/types';
 import axios, { AxiosResponse } from 'axios'
 import CategoryTag from './CategoryTag';
+import { useRouter } from 'next/router';
 
 export default function Navigation() {
 
