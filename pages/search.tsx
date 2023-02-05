@@ -17,7 +17,6 @@ export default function Search() {
   const [displayItems, setDisplayItems] = useState<Item[]>([]);
   const [proprietors, setProprietors] = useState<OwnerItem[]>([])
   const [itemPictures, setItemPictures] = useState<Picture[]>([]);
-  const hasFetchedPages: MutableRefObject<boolean> = useRef(false);
 
   useEffect(() => {
 
