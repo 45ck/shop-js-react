@@ -10,7 +10,6 @@ export interface RowItemPointer {
     item_id: number
 }
 
-
 export default async function (req: IncomingMessage, res: ServerResponse) {
 
     // check if we are connected
@@ -36,12 +35,10 @@ export default async function (req: IncomingMessage, res: ServerResponse) {
 
     let query = urlOnlySearch.get("query")
 
-    console.log(query)
-
     // get all item ids between starting row and ending row
     // and find all items that match query in columns name and description
 
-    let sqlQuery = `SELECT * FROM(SELECT *,ROW_NUMBER() OVER (ORDER BY item_id) AS rowNumber FROM items) items WHERE rowNumber >= ${startingRow} AND rowNumber <= ${endingRow} AND (item_name LIKE '%${query}%' OR item_description LIKE '%${query}%');`;
+    let sqlQuery = `SELECT * FROM	( SELECT *, ROW_NUMBER() OVER (ORDER BY item_id ASC) AS rowNumber FROM ( SELECT	* FROM	items WHERE item_name LIKE '%${query}%' OR item_description LIKE '%${query}%' ) itemsFiltered ) itemsSorted WHERE rowNumber >= ${startingRow} AND rowNumber <= ${endingRow} `;
 
     connection.query(sqlQuery,
         (queryError: Query.QueryError | null, result: RowDataPacket) => {

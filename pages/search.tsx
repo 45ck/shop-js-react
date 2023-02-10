@@ -20,10 +20,9 @@ export default function Search() {
 
     if (query["q"] == undefined) return;
 
-
     // reset proprietors to prevent the results from doubling up
 
-    setProprietors([]);
+    setProprietors([]); setDisplayItems([]); setItemPictures([]);
 
     // retrieve items from first page
 
