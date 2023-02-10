@@ -20,7 +20,10 @@ export default function Search() {
 
     if (query["q"] == undefined) return;
 
-    console.log(query["q"]);
+
+    // reset proprietors to prevent the results from doubling up
+
+    setProprietors([]);
 
     // retrieve items from first page
 
