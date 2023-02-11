@@ -18,7 +18,7 @@ export default function Navigation() {
   const userData = useContext(UserDataContext);
 
   const [categories, setCategories] = useState<Category[]>([]);
-  
+
 
   // retrieve a list of all categories 
 
@@ -35,10 +35,10 @@ export default function Navigation() {
 
   const onSubmitQuery = (event: FormEvent) => {
     event.preventDefault();
-    
+
     // retrieve value from search input element
 
-    let query =  (event.currentTarget.children[1] as HTMLInputElement).value;
+    let query = (event.currentTarget.children[1] as HTMLInputElement).value;
 
     console.log(query)
 
@@ -49,22 +49,32 @@ export default function Navigation() {
   }
 
   // handle search bar text when on a search page 
+  // only have a starting input value if we have a query in the url 
 
   const [currentSearchQuery, setCurrentSearchQuery] = useState(router.query['q'] ? router.query['q'] : "");
 
   useEffect(() => {
+
     setCurrentSearchQuery(router.query['q'] ? router.query['q'] : "")
-    console.log("HERE")
+
   }, [router.query])
 
+  // update query value in state when user inputs new value
+
   const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (event: ChangeEvent<HTMLInputElement>) => {
+
     setCurrentSearchQuery(event.target.value);
+
   }
 
-  const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event: KeyboardEvent<HTMLInputElement>): void => { 
+  // if we press the enter key, go to the search page by submitting the form 
+
+  const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event: KeyboardEvent<HTMLInputElement>): void => {
+
     if (event.key == "Enter") {
-        event.currentTarget.form?.dispatchEvent(new Event('submit'));
+      event.currentTarget.form?.dispatchEvent(new Event('submit'));
     }
+
   }
 
   return (
@@ -74,16 +84,16 @@ export default function Navigation() {
           <Link href="/" className=' text-2xl font-bold uppercase font-noto '>Home</Link>
           <form onSubmit={onSubmitQuery} className=' border-solid border-2 border-slate-700 rounded-lg'>
             <label className=' border-r-2 border-slate-700 border-solid p-2 font-viga'> Search </label>
-            <input type={"text"} onKeyDown={onSearchKeyDown} onChange={onChangeSearchQuery} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" value={currentSearchQuery}  />
+            <input type={"text"} onKeyDown={onSearchKeyDown} onChange={onChangeSearchQuery} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" value={currentSearchQuery} />
           </form>
           <div className='flex'>
-            <Link href="/account" className='mr-2 bg-slate-400 flex items-center py-0 px-2 rounded-lg'> <FontAwesomeIcon icon="user" size="1x" className='mr-2 fill-slate-800' color='var(--zinc-black)' /> <span className='font-viga'> {userData?.get.account ? userData.get.account.email : "Sign in" } </span> </Link>
+            <Link href="/account" className='mr-2 bg-slate-400 flex items-center py-0 px-2 rounded-lg'> <FontAwesomeIcon icon="user" size="1x" className='mr-2 fill-slate-800' color='var(--zinc-black)' /> <span className='font-viga'> {userData?.get.account ? userData.get.account.email : "Sign in"} </span> </Link>
             <Link href="/cart"> <FontAwesomeIcon icon="cart-shopping" size="2x" color='var(--zinc-black)' /> <span className=' bg-red-500 text-red-100 absolute py-0 px-1 -translate-x-1/2 font-bold text-sm rounded-2xl'>{userData?.get.cart.length}</span> </Link>
           </div>
         </div>
         <div className='w-100 flex items-start py-3 pr-8 bg-slate-100'>
-          { categories.map((category: Category, index) => 
-            <CategoryTag key={index} category={category}/> 
+          {categories.map((category: Category, index) =>
+            <CategoryTag key={index} category={category} />
           )}
         </div>
       </nav>
