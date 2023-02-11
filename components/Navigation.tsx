@@ -48,6 +48,15 @@ export default function Navigation() {
 
   }
 
+  // handle search bar text when on a search page 
+
+  const [currentSearchQuery, setCurrentSearchQuery] = useState(router.query['q'] ? router.query['q'] : "");
+
+  useEffect(() => {
+    setCurrentSearchQuery(router.query['q'] ? router.query['q'] : "")
+    console.log("HERE")
+  }, [router.query])
+
   return (
     <>
       <nav className=" w-screen h-fit bg-neutral-200 ">
@@ -55,7 +64,7 @@ export default function Navigation() {
           <Link href="/" className=' text-2xl font-bold uppercase font-noto '>Home</Link>
           <form onSubmit={onSubmitQuery} className=' border-solid border-2 border-slate-700 rounded-lg'>
             <label className=' border-r-2 border-slate-700 border-solid p-2 font-viga'> Search </label>
-            <input type={"text"} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" />
+            <input type={"text"} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" value={currentSearchQuery} />
           </form>
           <div className='flex'>
             <Link href="/account" className='mr-2 bg-slate-400 flex items-center py-0 px-2 rounded-lg'> <FontAwesomeIcon icon="user" size="1x" className='mr-2 fill-slate-800' color='var(--zinc-black)' /> <span className='font-viga'> {userData?.get.account ? userData.get.account.email : "Sign in" } </span> </Link>
