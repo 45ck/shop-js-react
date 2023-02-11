@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { FormEvent, FormEventHandler, useContext, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, ChangeEventHandler, FormEvent, FormEventHandler, KeyboardEvent, KeyboardEventHandler, useContext, useEffect, useRef, useState } from 'react'
 import { UserDataContext } from '../pages/_app'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -57,6 +57,16 @@ export default function Navigation() {
     console.log("HERE")
   }, [router.query])
 
+  const onChangeSearchQuery: ChangeEventHandler<HTMLInputElement> = (event: ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearchQuery(event.target.value);
+  }
+
+  const onSearchKeyDown: KeyboardEventHandler<HTMLInputElement> = (event: KeyboardEvent<HTMLInputElement>): void => { 
+    if (event.key == "Enter") {
+        event.currentTarget.form?.dispatchEvent(new Event('submit'));
+    }
+  }
+
   return (
     <>
       <nav className=" w-screen h-fit bg-neutral-200 ">
@@ -64,7 +74,7 @@ export default function Navigation() {
           <Link href="/" className=' text-2xl font-bold uppercase font-noto '>Home</Link>
           <form onSubmit={onSubmitQuery} className=' border-solid border-2 border-slate-700 rounded-lg'>
             <label className=' border-r-2 border-slate-700 border-solid p-2 font-viga'> Search </label>
-            <input type={"text"} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" value={currentSearchQuery} />
+            <input type={"text"} onKeyDown={onSearchKeyDown} onChange={onChangeSearchQuery} name="q" className="lg:w-52 p-2 font-viga font-light focus-visible:outline-none" value={currentSearchQuery}  />
           </form>
           <div className='flex'>
             <Link href="/account" className='mr-2 bg-slate-400 flex items-center py-0 px-2 rounded-lg'> <FontAwesomeIcon icon="user" size="1x" className='mr-2 fill-slate-800' color='var(--zinc-black)' /> <span className='font-viga'> {userData?.get.account ? userData.get.account.email : "Sign in" } </span> </Link>
