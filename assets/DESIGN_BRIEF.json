@@ -1,0 +1,24 @@
+{
+  "repo_name": "shop-js-react",
+  "tagline": "Modern storefront, built with Next.js",
+  "one_sentence_purpose": "A full-stack e-commerce web application built with Next.js, React, Tailwind CSS, and MySQL",
+  "target_users": "Web developers building online shops and e-commerce experiences",
+  "keywords": ["ecommerce", "nextjs", "react", "storefront"],
+  "visual_metaphors": ["a shopping cart icon composed of code brackets", "a sleek product grid layout with glowing cards", "a storefront window with digital price tags"],
+  "avoid": ["no mascots", "no photorealism", "no clip-art style shopping bags"],
+  "style_adjectives": ["modern", "clean", "commercial", "sleek", "minimal"],
+  "palette_hint": {
+    "bg_light": "#ffffff",
+    "bg_dark": "#0d1117",
+    "primary": "#3b82f6",
+    "accent": "#f59e0b",
+    "ink": "#c9d1d9"
+  },
+  "assets_needed": [
+    {"path": "assets/banner.light.png", "type": "readme_banner", "desc": "Wide banner on white background"},
+    {"path": "assets/banner.dark.png", "type": "readme_banner", "desc": "Wide banner on dark background"},
+    {"path": "assets/logo.light.png", "type": "square_logo", "desc": "Square logo on white background"},
+    {"path": "assets/logo.dark.png", "type": "square_logo", "desc": "Square logo on dark background"},
+    {"path": "assets/social-preview.png", "type": "github_social_preview", "desc": "GitHub social preview card"}
+  ]
+}
